@@ -21,10 +21,38 @@ protocol ChessMovable {
     func move(from fromPosition: ChessPiecePosition, to toPosition: ChessPiecePosition)
 }
 
-var calculateCurrentPosition: Double {
-    get {
-        return 0.0
+struct GameController {
+    var game = GameLogic()
+    
+    init() {
+        game.delegate = self
     }
+}
+
+extension GameController: ChessMovedDelegate {
+    
+    func moved(from fromPosition: ChessPiecePosition, to toPosition: ChessPiecePosition) {
+        
+    }
+    
+}
+
+struct GameLogic: ChessMovable {
+    
+    var calculateCurrentPosition: Double {
+        get {
+            return 0.0
+        }
+    }
+    
+    var delegate: ChessMovedDelegate?
+    
+    func move(from fromPosition: ChessPiecePosition, to toPosition: ChessPiecePosition) {
+        //some logic
+        
+        delegate?.moved(from: fromPosition, to: toPosition)
+    }
+    
 }
 
 //b
@@ -42,7 +70,11 @@ class Circle: Drawable {
     }
 }
 
-class Bird: Flyable {
+class Bird: Drawable, Flyable {
+    func draw() {
+        
+    }
+    
     func fly() {
         
     }
