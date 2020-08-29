@@ -4,16 +4,20 @@ import UIKit
 //В протоколе нельзя создать реализацию метода или свойства, только если создать extension для протокола и сделать реализацию в нем
 
 //Task 5
-//Tuples - не могут содержать несколько протоколов
+//Tuples вообще не могут реализовывать протоколы
 
 //Task 6
-//a - Я не совсем понял что от меня требуеться сделать в этом задании. Не понимаю зачем нужно создавать два делегата для одинаковой задачи (передачи хода фигуры)
+//a
 struct ChessPiecePosition {
     var x: Int
     var y: Int
 }
 
-protocol ChessMovableDelegate {
+protocol ChessMovedDelegate {
+    func moved(from fromPosition: ChessPiecePosition, to toPosition: ChessPiecePosition)
+}
+
+protocol ChessMovable {
     func move(from fromPosition: ChessPiecePosition, to toPosition: ChessPiecePosition)
 }
 
@@ -22,8 +26,6 @@ var calculateCurrentPosition: Double {
         return 0.0
     }
 }
-
-var chessMoveDelegate: ChessMovableDelegate
 
 //b
 protocol Flyable {
@@ -34,12 +36,14 @@ protocol Drawable {
     func draw()
 }
 
-class Game: Flyable, Drawable {
-    func fly() {
+class Circle: Drawable {
+    func draw() {
         
     }
-    
-    func draw() {
+}
+
+class Bird: Flyable {
+    func fly() {
         
     }
 }
