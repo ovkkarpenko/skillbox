@@ -146,5 +146,60 @@ extension MyCustromNumber {
 }
 
 //Task 9
+protocol Animator {
+    associatedtype Target
+    associatedtype Value
+    
+    init(_ value: Value)
+    
+    func animate(target: Target)
+}
+
 //a
+class BackgroundAnimator: Animator {
+    
+    let newValue: UIColor
+    
+    required init(_ value: UIColor) {
+        self.newValue = value
+    }
+    
+    func animate(target: UIView) {
+        UIView.animate(withDuration: 0.3) {
+            target.backgroundColor = self.newValue
+        }
+    }
+}
+
+//b
+class CenterAnimator: Animator {
+    
+    let newValue: CGPoint
+    
+    required init(_ value: CGPoint) {
+        self.newValue = value
+    }
+    
+    func animate(target: UIView) {
+        UIView.animate(withDuration: 0.3) {
+            target.center = self.newValue
+        }
+    }
+}
+
+//c
+class TransformAnimator: Animator {
+    
+    let newValue: CGAffineTransform
+    
+    required init(_ value: CGAffineTransform) {
+        self.newValue = value
+    }
+    
+    func animate(target: UIView) {
+        UIView.animate(withDuration: 0.3) {
+            target.transform = self.newValue
+        }
+    }
+}
 
