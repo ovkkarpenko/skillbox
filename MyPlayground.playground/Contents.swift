@@ -203,3 +203,14 @@ class TransformAnimator: Animator {
     }
 }
 
+infix operator ~~>
+func ~~><T: Animator>(left: T, right: T.Target) {
+    left.animate(target: right)
+}
+
+let myView = UIView()
+
+//a
+CenterAnimator(CGPoint(x: 10, y: 10)).animate(target: myView)
+//b
+CenterAnimator(CGPoint(x: 10, y: 10)) ~~> myView
