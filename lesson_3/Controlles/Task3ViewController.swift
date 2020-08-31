@@ -22,11 +22,9 @@ class Task3ViewController: UIViewController {
         
         names.bind(to: namesTable) { (dataSource, indexPath, tableView) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(withIdentifier: "nameCell") as! NameTableViewCell
-            
             cell.nameLabel.text = dataSource[indexPath.row]
-            
             return cell
-        }.dispose(in: reactive.bag)
+        }
         
         addNewNameButton.reactive.tap.observeNext {
             self.names.insert("New name", at: 0)
