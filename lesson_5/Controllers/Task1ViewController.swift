@@ -8,13 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class Task1ViewController: UIViewController {
+    
+    @IBOutlet weak var image: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let url = URL(string: "https://blackstarshop.ru/image/catalog/im2017/1.png")!
+        image.loadFromURL(url)
     }
-
-
+    
 }
-
