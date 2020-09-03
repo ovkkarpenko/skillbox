@@ -23,10 +23,10 @@ class Task3ViewController: UIViewController {
         guard let numberText = numberTextfield.text,
             let number = Int(numberText) else { return }
         
-        var threadDuration = 0
+        var threadDuration = 0.0
         
-        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            threadDuration+=1
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
+            threadDuration += 0.01
         }
         
         DispatchQueue.global(qos: .utility).async { [unowned self] in
@@ -37,7 +37,7 @@ class Task3ViewController: UIViewController {
             }
             
             DispatchQueue.main.async { [weak self] in
-                print("Duration: \(threadDuration) sec.")
+                print("Duration: \(String(format: "%.2f", threadDuration)) sec.")
                 print(self?.simpleNumbers ?? "")
                 
                 timer.invalidate()
