@@ -23,13 +23,9 @@ class Task3ViewController: UIViewController {
         guard let numberText = numberTextfield.text,
             let number = Int(numberText) else { return }
         
-        var threadDuration = 0.0
-        
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
-            threadDuration += 0.01
-        }
-        
         DispatchQueue.global(qos: .utility).async { [unowned self] in
+            let start = DispatchTime.now()
+            
             for n in 1..<number {
                 if self.isPrime(n) {
                     self.simpleNumbers.append(n)
@@ -37,10 +33,11 @@ class Task3ViewController: UIViewController {
             }
             
             DispatchQueue.main.async { [weak self] in
-                print("Duration: \(String(format: "%.2f", threadDuration)) sec.")
-                print(self?.simpleNumbers ?? "")
+                let end = DispatchTime.now()
+                let timeInterval = Double(end.uptimeNanoseconds - start.uptimeNanoseconds) / 1_000_000_000
                 
-                timer.invalidate()
+                print("Duration: \(String(format: "%.3f", timeInterval)) sec.")
+                print(self?.simpleNumbers ?? "")
             }
         }
     }
