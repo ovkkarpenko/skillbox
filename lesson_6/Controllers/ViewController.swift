@@ -9,12 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    var number: Int?
+    
+    @IBOutlet weak var label: UILabel!
+    
+    deinit {
+        print("ViewController---")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        print("ViewController+++")
     }
-
-
+    
 }
 
