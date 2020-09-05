@@ -128,7 +128,7 @@ struct Stack<T> {
     }
     
     func peek() -> T? {
-      return array.last
+        return array.last
     }
 }
 
@@ -146,8 +146,6 @@ extension Stack: CustomStringConvertible {
         return topDivider + result + bottomDivider
     }
 }
-
-
 
 public struct Vertex<T: Hashable> {
     var data: T
@@ -319,7 +317,6 @@ func depthFirstSearch(from start: Vertex<String>, to end: Vertex<String>, graph:
                 visited.insert(edge.destination)
                 stack.push(edge.destination)
                 print(stack.description)
-                print(edge.weight)
                 continue outer
             }
         }
