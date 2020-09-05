@@ -116,69 +116,222 @@ let searchNode = tree.search(value: "D")
 searchNode?.value
 
 //Task 3
-struct Edge {
-    var distance: Double
-    var vertex: Vertex
-}
-
-struct Vertex {
-    var station: String
-    var edges: [Edge]
+struct Stack<T> {
+    var array: [T] = []
     
-    mutating func addEdge(_ edge: Edge) {
-        edges.append(edge)
+    mutating func push(_ element: T) {
+        array.append(element)
+    }
+    
+    mutating func pop() -> T? {
+        return array.popLast()
+    }
+    
+    func peek() -> T? {
+      return array.last
     }
 }
 
-class Metro {
-    var stations: [Vertex] = []
-    
-    func search(from: Vertex, to: Vertex) -> Double {
-        var totalDistance = 0.0
-        for station in stations {
-            for edge in station.edges {
-                totalDistance += edge.distance
-                
-            }
-            totalDistance = 0.0
+extension Stack: CustomStringConvertible {
+    var description: String {
+        let topDivider = "---Stack---\n"
+        let bottomDivider = "\n-----------\n"
+        
+        var result = ""
+        
+        for i in 0..<array.count {
+            result.append("\(array[i])\n")
         }
-        return totalDistance
-    }
-    
-    func addStation(_ station: Vertex) {
-        stations.append(station)
+        
+        return topDivider + result + bottomDivider
     }
 }
 
-var station1 = Vertex(station: "Station 1", edges: [])
-var station2 = Vertex(station: "Station 2", edges: [])
-var station3 = Vertex(station: "Station 3", edges: [])
 
-let edge1 = Edge(distance: 5, vertex: station1)
-let edge2 = Edge(distance: 15, vertex: station1)
 
-let edge3 = Edge(distance: 1, vertex: station2)
-let edge5 = Edge(distance: 6, vertex: station2)
+public struct Vertex<T: Hashable> {
+    var data: T
+}
 
-let edge6 = Edge(distance: 2, vertex: station3)
-let edge7 = Edge(distance: 1, vertex: station3)
+extension Vertex: Hashable {
+    public var hashValue: Int {
+        return "\(data)".hashValue
+    }
+    
+    static public func ==(lhs: Vertex, rhs: Vertex) -> Bool {
+        return lhs.data == rhs.data
+    }
+}
 
-station1.addEdge(edge3)
-station1.addEdge(edge6)
+extension Vertex: CustomStringConvertible {
+    public var description: String {
+        return "\(data)"
+    }
+}
 
-station2.addEdge(edge1)
-station2.addEdge(edge7)
+public enum EdgeType {
+    case directed, undirected
+}
 
-station3.addEdge(edge2)
-station3.addEdge(edge5)
+public struct Edge<T: Hashable> {
+    public var source: Vertex<T>
+    public var destination: Vertex<T>
+    public let weight: Double?
+}
 
-let metro = Metro()
+extension Edge: Hashable {
+    public var hashValue: Int {
+        return "\(source)\(destination)\(weight)".hashValue
+    }
+    
+    static public func ==(lhs: Edge<T>, rhs: Edge<T>) -> Bool {
+        return lhs.source == rhs.source &&
+            lhs.destination == rhs.destination &&
+            lhs.weight == rhs.weight
+    }
+}
 
-metro.addStation(station1)
-metro.addStation(station2)
-metro.addStation(station3)
+protocol Graphable {
+    associatedtype Element: Hashable
+    var description: CustomStringConvertible { get }
+    
+    func createVertex(data: Element) -> Vertex<Element>
+    func add(_ type: EdgeType, from source: Vertex<Element>, to destination: Vertex<Element>, weight: Double?)
+    func weight(from source: Vertex<Element>, to destination: Vertex<Element>) -> Double?
+    func edges(from source: Vertex<Element>) -> [Edge<Element>]?
+}
 
-metro.search(from: station1, to: station3)
+class AdjacencyList<T: Hashable> {
+    public var adjacencyDict : [Vertex<T>: [Edge<T>]] = [:]
+    public init() {}
+}
+
+extension AdjacencyList: Graphable {
+    public typealias Element = T
+    
+    public var description: CustomStringConvertible {
+        var result = ""
+        for (vertex, edges) in adjacencyDict {
+            var edgeString = ""
+            for (index, edge) in edges.enumerated() {
+                if index != edges.count - 1 {
+                    edgeString.append("\(edge.destination), ")
+                } else {
+                    edgeString.append("\(edge.destination)")
+                }
+            }
+            result.append("\(vertex) ---> [ \(edgeString) ] \n ")
+        }
+        return result
+    }
+    
+    public func createVertex(data: Element) -> Vertex<Element> {
+        let vertex = Vertex(data: data)
+        
+        if adjacencyDict[vertex] == nil {
+            adjacencyDict[vertex] = []
+        }
+        
+        return vertex
+    }
+    
+    public func add(_ type: EdgeType, from source: Vertex<Element>, to destination: Vertex<Element>, weight: Double?) {
+        switch type {
+        case .directed:
+            addDirectedEdge(from: source, to: destination, weight: weight)
+        case .undirected:
+            addUndirectedEdge(vertices: (source, destination), weight: weight)
+        }
+    }
+    
+    public func weight(from source: Vertex<Element>, to destination: Vertex<Element>) -> Double? {
+        guard let edges = adjacencyDict[source] else {
+            return nil
+        }
+        
+        for edge in edges {
+            if edge.destination == destination {
+                return edge.weight
+            }
+        }
+        
+        return nil
+    }
+    
+    public func edges(from source: Vertex<Element>) -> [Edge<Element>]? {
+        return adjacencyDict[source]
+    }
+    
+    private func addDirectedEdge(from source: Vertex<Element>, to destination: Vertex<Element>, weight: Double?) {
+        let edge = Edge(source: source, destination: destination, weight: weight)
+        adjacencyDict[source]?.append(edge)
+    }
+    
+    private func addUndirectedEdge(vertices: (Vertex<Element>, Vertex<Element>), weight: Double?) {
+        let (source, destination) = vertices
+        addDirectedEdge(from: source, to: destination, weight: weight)
+        addDirectedEdge(from: destination, to: source, weight: weight)
+    }
+}
+
+let adjacencyList = AdjacencyList<String>()
+
+let singapore = adjacencyList.createVertex(data: "Singapore")
+let tokyo = adjacencyList.createVertex(data: "Tokyo")
+let hongKong = adjacencyList.createVertex(data: "Hong Kong")
+let detroit = adjacencyList.createVertex(data: "Detroit")
+let sanFrancisco = adjacencyList.createVertex(data: "San Francisco")
+let washingtonDC = adjacencyList.createVertex(data: "Washington DC")
+let austinTexas = adjacencyList.createVertex(data: "Austin Texas")
+let seattle = adjacencyList.createVertex(data: "Seattle")
+
+adjacencyList.add(.undirected, from: singapore, to: hongKong, weight: 300)
+adjacencyList.add(.undirected, from: singapore, to: tokyo, weight: 500)
+adjacencyList.add(.undirected, from: hongKong, to: tokyo, weight: 250)
+adjacencyList.add(.undirected, from: tokyo, to: detroit, weight: 450)
+adjacencyList.add(.undirected, from: tokyo, to: washingtonDC, weight: 300)
+adjacencyList.add(.undirected, from: hongKong, to: sanFrancisco, weight: 600)
+adjacencyList.add(.undirected, from: detroit, to: austinTexas, weight: 50)
+adjacencyList.add(.undirected, from: austinTexas, to: washingtonDC, weight: 292)
+adjacencyList.add(.undirected, from: sanFrancisco, to: washingtonDC, weight: 337)
+adjacencyList.add(.undirected, from: washingtonDC, to: seattle, weight: 277)
+adjacencyList.add(.undirected, from: sanFrancisco, to: seattle, weight: 218)
+adjacencyList.add(.undirected, from: austinTexas, to: sanFrancisco, weight: 297)
+
+print(adjacencyList.description)
+
+func depthFirstSearch(from start: Vertex<String>, to end: Vertex<String>, graph: AdjacencyList<String>) -> Stack<Vertex<String>> {
+    var visited = Set<Vertex<String>>()
+    var stack = Stack<Vertex<String>>()
+    
+    stack.push(start)
+    visited.insert(start)
+    
+    outer: while let vertex = stack.peek(), vertex != end {
+        guard let neighbors = graph.edges(from: vertex), neighbors.count > 0 else {
+            print("backtrack from \(vertex)")
+            stack.pop()
+            continue
+        }
+        
+        for edge in neighbors {
+            if !visited.contains(edge.destination) {
+                visited.insert(edge.destination)
+                stack.push(edge.destination)
+                print(stack.description)
+                print(edge.weight)
+                continue outer
+            }
+        }
+        
+        print("backtrack from \(vertex)")
+        stack.pop()
+    }
+    
+    return stack
+}
+
+depthFirstSearch(from: hongKong, to: sanFrancisco, graph: adjacencyList)
 
 //Task 4
 extension Array where Element: Comparable {
