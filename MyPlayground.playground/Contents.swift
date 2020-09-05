@@ -316,7 +316,7 @@ func depthFirstSearch(from start: Vertex<String>, to end: Vertex<String>, graph:
             if !visited.contains(edge.destination) {
                 visited.insert(edge.destination)
                 stack.push(edge.destination)
-                print(stack.description)
+//                print(stack.description)
                 continue outer
             }
         }
@@ -328,7 +328,8 @@ func depthFirstSearch(from start: Vertex<String>, to end: Vertex<String>, graph:
     return stack
 }
 
-depthFirstSearch(from: hongKong, to: sanFrancisco, graph: adjacencyList)
+let res = depthFirstSearch(from: hongKong, to: sanFrancisco, graph: adjacencyList)
+print(res)
 
 //Task 4
 extension Array where Element: Comparable {
