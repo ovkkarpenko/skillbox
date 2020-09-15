@@ -13,6 +13,14 @@
 		FA745F8825109F0D003B63F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA745F8625109F0D003B63F2 /* Main.storyboard */; };
 		FA745F8A25109F0F003B63F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA745F8925109F0F003B63F2 /* Assets.xcassets */; };
 		FA745F8D25109F0F003B63F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA745F8B25109F0F003B63F2 /* LaunchScreen.storyboard */; };
+		FA745F9A2510A12D003B63F2 /* ObjViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA745F992510A12D003B63F2 /* ObjViewController.m */; };
+		FA745F9D2510A428003B63F2 /* Obj2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA745F9C2510A428003B63F2 /* Obj2ViewController.m */; };
+		FA745FA02510A8B3003B63F2 /* SegueSwizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA745F9F2510A8B3003B63F2 /* SegueSwizzler.swift */; };
+		FA745FA22510AD33003B63F2 /* Task3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA745FA12510AD33003B63F2 /* Task3ViewController.swift */; };
+		FA745FA42510ADD6003B63F2 /* Task3DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA745FA32510ADD6003B63F2 /* Task3DetailsViewController.swift */; };
+		FA745FA62510B25C003B63F2 /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA745FA52510B25C003B63F2 /* MyView.swift */; };
+		FA9F1FA82510B636003DB39F /* Task4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9F1FA72510B636003DB39F /* Task4ViewController.swift */; };
+		FA9F1FAC2510DC83003DB39F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9F1FAB2510DC83003DB39F /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,17 @@
 		FA745F8925109F0F003B63F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA745F8C25109F0F003B63F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA745F8E25109F0F003B63F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA745F972510A12D003B63F2 /* lesson_8-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "lesson_8-Bridging-Header.h"; sourceTree = "<group>"; };
+		FA745F982510A12D003B63F2 /* ObjViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjViewController.h; sourceTree = "<group>"; };
+		FA745F992510A12D003B63F2 /* ObjViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjViewController.m; sourceTree = "<group>"; };
+		FA745F9B2510A428003B63F2 /* Obj2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Obj2ViewController.h; sourceTree = "<group>"; };
+		FA745F9C2510A428003B63F2 /* Obj2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Obj2ViewController.m; sourceTree = "<group>"; };
+		FA745F9F2510A8B3003B63F2 /* SegueSwizzler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueSwizzler.swift; sourceTree = "<group>"; };
+		FA745FA12510AD33003B63F2 /* Task3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task3ViewController.swift; sourceTree = "<group>"; };
+		FA745FA32510ADD6003B63F2 /* Task3DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task3DetailsViewController.swift; sourceTree = "<group>"; };
+		FA745FA52510B25C003B63F2 /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
+		FA9F1FA72510B636003DB39F /* Task4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task4ViewController.swift; sourceTree = "<group>"; };
+		FA9F1FAB2510DC83003DB39F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +75,58 @@
 		FA745F7F25109F0D003B63F2 /* lesson_8 */ = {
 			isa = PBXGroup;
 			children = (
-				FA745F8025109F0D003B63F2 /* AppDelegate.swift */,
-				FA745F8225109F0D003B63F2 /* SceneDelegate.swift */,
-				FA745F8425109F0D003B63F2 /* ViewController.swift */,
-				FA745F8625109F0D003B63F2 /* Main.storyboard */,
+				FA745F9E2510A8A9003B63F2 /* Utils */,
+				FA745F9625109F28003B63F2 /* Views */,
+				FA745F9425109F1A003B63F2 /* Controllers */,
+				FA745F9525109F25003B63F2 /* Delegates */,
 				FA745F8925109F0F003B63F2 /* Assets.xcassets */,
-				FA745F8B25109F0F003B63F2 /* LaunchScreen.storyboard */,
 				FA745F8E25109F0F003B63F2 /* Info.plist */,
 			);
 			path = lesson_8;
+			sourceTree = "<group>";
+		};
+		FA745F9425109F1A003B63F2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA745F8425109F0D003B63F2 /* ViewController.swift */,
+				FA745F982510A12D003B63F2 /* ObjViewController.h */,
+				FA745F992510A12D003B63F2 /* ObjViewController.m */,
+				FA745F9B2510A428003B63F2 /* Obj2ViewController.h */,
+				FA745F9C2510A428003B63F2 /* Obj2ViewController.m */,
+				FA745F972510A12D003B63F2 /* lesson_8-Bridging-Header.h */,
+				FA745FA12510AD33003B63F2 /* Task3ViewController.swift */,
+				FA745FA32510ADD6003B63F2 /* Task3DetailsViewController.swift */,
+				FA9F1FA72510B636003DB39F /* Task4ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FA745F9525109F25003B63F2 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				FA745F8025109F0D003B63F2 /* AppDelegate.swift */,
+				FA745F8225109F0D003B63F2 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		FA745F9625109F28003B63F2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA745F8625109F0D003B63F2 /* Main.storyboard */,
+				FA745F8B25109F0F003B63F2 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FA745F9E2510A8A9003B63F2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FA745F9F2510A8B3003B63F2 /* SegueSwizzler.swift */,
+				FA745FA52510B25C003B63F2 /* MyView.swift */,
+				FA9F1FAB2510DC83003DB39F /* ImagePicker.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +161,7 @@
 				TargetAttributes = {
 					FA745F7C25109F0D003B63F2 = {
 						CreatedOnToolsVersion = 11.7;
+						LastSwiftMigration = 1170;
 					};
 				};
 			};
@@ -138,7 +201,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA745F9A2510A12D003B63F2 /* ObjViewController.m in Sources */,
+				FA745F9D2510A428003B63F2 /* Obj2ViewController.m in Sources */,
+				FA9F1FA82510B636003DB39F /* Task4ViewController.swift in Sources */,
 				FA745F8525109F0D003B63F2 /* ViewController.swift in Sources */,
+				FA745FA62510B25C003B63F2 /* MyView.swift in Sources */,
+				FA745FA02510A8B3003B63F2 /* SegueSwizzler.swift in Sources */,
+				FA745FA42510ADD6003B63F2 /* Task3DetailsViewController.swift in Sources */,
+				FA745FA22510AD33003B63F2 /* Task3ViewController.swift in Sources */,
+				FA9F1FAC2510DC83003DB39F /* ImagePicker.swift in Sources */,
 				FA745F8125109F0D003B63F2 /* AppDelegate.swift in Sources */,
 				FA745F8325109F0D003B63F2 /* SceneDelegate.swift in Sources */,
 			);
@@ -284,6 +355,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LMGHP5L64B;
 				INFOPLIST_FILE = lesson_8/Info.plist;
@@ -293,6 +365,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sanyakarpenko.lesson-8";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "lesson_8/Controllers/lesson_8-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -302,6 +376,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LMGHP5L64B;
 				INFOPLIST_FILE = lesson_8/Info.plist;
@@ -311,6 +386,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sanyakarpenko.lesson-8";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "lesson_8/Controllers/lesson_8-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
