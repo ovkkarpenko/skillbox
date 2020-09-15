@@ -10,17 +10,18 @@ import UIKit
 
 class Task4ViewController: UIViewController {
     
-    let imagePicker = ImagePicker()
+    let picker = UIImagePickerController()
     
     @IBOutlet weak var image: UIImageView!
     
     @IBAction func selectPhotoButtonClick(_ sender: Any) {
-        imagePicker.selectPhoto(from: self) { image in
-            DispatchQueue.main.async { [weak self] in
-                self?.image.image = image
+        self.picker.swizzling(vc: self, callback: { [weak self] output in
+            guard let self = self else { return }
+            // output - вывод originalImage в результате свизлинга
+            DispatchQueue.main.async {
+                self.image.image = output
             }
-            
-        }
+        })
     }
     
 }
