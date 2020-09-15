@@ -210,6 +210,9 @@
                                 <rect key="frame" x="131" y="265" width="112" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Show Details"/>
+                                <connections>
+                                    <action selector="showDetails:" destination="jpp-jZ-Bt3" eventType="touchUpInside" id="aHX-gL-wa8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

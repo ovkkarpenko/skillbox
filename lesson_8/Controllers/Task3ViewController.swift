@@ -14,7 +14,7 @@ class Task3ViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func showButtonClick(_ sender: Any) {
+    @IBAction func showDetails(_ sender: Any) {
         performSegueWithIdentifier(identifier: "ShowDetailsSegue", sender: nil) { (segue) in
             let vc = segue.destination as! Task3DetailsViewController
             vc.message = "Hello world"
