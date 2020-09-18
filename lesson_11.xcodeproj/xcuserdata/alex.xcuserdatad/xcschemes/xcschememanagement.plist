@@ -3,11 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
+	<dict/>
+	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>lesson_11.xcscheme_^#shared#^_</key>
+		<key>FAE367962514D99800FBF772</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FAE367AC2514D99A00FBF772</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FAE367B72514D99A00FBF772</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
