@@ -22,21 +22,107 @@ class lesson_11UITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testValidUserWithPasswordWithoutUpperRegister() throws {
         let app = XCUIApplication()
         app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        //given
+        let email = "qwerty@ru.ru"
+        let password = "qwerty123"
+        
+        //when
+        let emailTextField = app.textFields["EmailTextfield"]
+        let passwordTextField = app.textFields["PasswordTextfield"]
+        let loginButton = app.buttons["LoginButton"]
+        let resultMessageLabel = app.staticTexts["ResultMessageLabel"]
+        
+        emailTextField.tap()
+        emailTextField.typeText(email)
+        
+        passwordTextField.tap()
+        passwordTextField.typeText(password)
+        
+        loginButton.tap()
+        
+        //then
+        XCTAssertTrue(resultMessageLabel.exists)
     }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    
+    func testValidUserWithPasswordWithoutLowerRegister() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        //given
+        let email = "qwerty@ru.ru"
+        let password = "QWERTY123"
+        
+        //when
+        let emailTextField = app.textFields["EmailTextfield"]
+        let passwordTextField = app.textFields["PasswordTextfield"]
+        let loginButton = app.buttons["LoginButton"]
+        let resultMessageLabel = app.staticTexts["ResultMessageLabel"]
+        
+        emailTextField.tap()
+        emailTextField.typeText(email)
+        
+        passwordTextField.tap()
+        passwordTextField.typeText(password)
+        
+        loginButton.tap()
+        
+        //then
+        XCTAssertTrue(resultMessageLabel.exists)
+    }
+    
+    func testValidUserWithBadEmail() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        //given
+        let email = "@ru.ru"
+        let password = "qwertY123"
+        
+        //when
+        let emailTextField = app.textFields["EmailTextfield"]
+        let passwordTextField = app.textFields["PasswordTextfield"]
+        let loginButton = app.buttons["LoginButton"]
+        let resultMessageLabel = app.staticTexts["ResultMessageLabel"]
+        
+        emailTextField.tap()
+        emailTextField.typeText(email)
+        
+        passwordTextField.tap()
+        passwordTextField.typeText(password)
+        
+        loginButton.tap()
+        
+        //then
+        XCTAssertTrue(resultMessageLabel.exists)
+    }
+    
+    func testValidUser() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        //given
+        let email = "qwerty@ru.ru"
+        let password = "qwertY123"
+        
+        //when
+        let emailTextField = app.textFields["EmailTextfield"]
+        let passwordTextField = app.textFields["PasswordTextfield"]
+        let loginButton = app.buttons["LoginButton"]
+        let resultMessageLabel = app.staticTexts["ResultMessageLabel"]
+        
+        emailTextField.tap()
+        emailTextField.typeText(email)
+        
+        passwordTextField.tap()
+        passwordTextField.typeText(password)
+        
+        loginButton.tap()
+        
+        //then
+        XCTAssertFalse(resultMessageLabel.exists)
     }
 }
