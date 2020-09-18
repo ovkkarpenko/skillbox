@@ -29,11 +29,15 @@ class Task2ViewController: UIViewController {
         LocationManager.shared.requestAccess(completion: nil)
         
         places.forEach { place in
-            mapView.mapWindow.map.mapObjects
-                .addPlacemark(with: place.coordinate, image: UIImage(named: "\(indexImage)")!)
-                .addTapListener(with: self)
+            let placemark = mapView.mapWindow.map.mapObjects.addPlacemark(with: YMKPoint(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude))
             
+            let image = UIImage(named: "\(indexImage)")!
             indexImage += 1
+            
+            placemark.title = place.title!
+            placemark.snippet = place.subtitle!
+            placemark.setIconWith(image)
+            placemark.addTapListener(with: self)
         }
         
         let mapKit = YMKMapKit.sharedInstance()
@@ -68,9 +72,36 @@ class Task2ViewController: UIViewController {
     
 }
 
+struct AssociatedKeys {
+    static var Title: UInt8 = 0
+    static var Snippet: UInt8 = 0
+}
+extension YMKMapObject {
+    var title: String? {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.Title) as? String
+        }
+        set {
+            if let newValue = newValue {
+                objc_setAssociatedObject(self, &AssociatedKeys.Title, newValue as String?, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
+        }
+    }
+    var snippet: String? {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.Snippet) as? String
+        }
+        set {
+            if let newValue = newValue {
+                objc_setAssociatedObject(self, &AssociatedKeys.Snippet, newValue as String?, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
+        }
+    }
+}
+
 extension Task2ViewController: YMKMapObjectTapListener {
     func onMapObjectTap(with mapObject: YMKMapObject, point: YMKPoint) -> Bool {
-        print("123")
+        print(mapObject.title!)
         return true
     }
 }
