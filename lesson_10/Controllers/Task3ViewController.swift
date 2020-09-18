@@ -25,18 +25,25 @@ class Task3ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        LocationManager.shared.requestAccess(completion: nil)
         mapView.delegate = self
         mapView.addAnnotations(places)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setRegion()
+        setRegion(center: calculateCenter())
     }
     
-    func setRegion() {
+    @IBAction func userCurrentLocation(_ sender: Any) {
+        LocationManager.shared.getLocation { location in
+            self.setRegion(center: location!)
+        }
+    }
+    
+    func setRegion(center: CLLocationCoordinate2D) {
         let regionRadius: CLLocationDistance = 5000
-        let region = MKCoordinateRegion(center: calculateCenter(), latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(region, animated: true)
     }
     
@@ -56,9 +63,12 @@ extension Task3ViewController: MKMapViewDelegate {
         
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView?.image = UIImage(named: "\(indexImage)")
             annotationView?.canShowCallout = true
-            indexImage += 1
+            
+            if let icon = UIImage(named: "\(indexImage)") {
+                annotationView?.image = icon
+                indexImage += 1
+            }
         } else {
             annotationView?.annotation = annotation
         }
@@ -72,7 +82,7 @@ extension Task3ViewController: MKMapViewDelegate {
     
 }
 
-class Place: NSObject, MKAnnotation {
+fileprivate class Place: NSObject, MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D
     var title: String?

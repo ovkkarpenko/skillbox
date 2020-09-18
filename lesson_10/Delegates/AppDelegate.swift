@@ -8,12 +8,14 @@
 
 import UIKit
 import GoogleMaps
+import YandexMapKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey("AIzaSyA6WvarOrX7k-mTGGD0E8RbeDaUaVPtEuk")
+        YMKMapKit.setApiKey("919fd1fe-b869-4b47-8329-b68fdf3a8bf2")
         return true
     }
 

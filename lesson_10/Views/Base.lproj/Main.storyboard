@@ -1,23 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SgF-Vu-lHV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SgF-Vu-lHV">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Task 2-->
         <scene sceneID="DRG-XU-Q4Y">
             <objects>
-                <viewController id="bhU-FT-wK9" sceneMemberID="viewController">
+                <viewController id="bhU-FT-wK9" customClass="Task2ViewController" customModule="lesson_10" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cfp-BQ-UwA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0e6-qO-JcI" customClass="YMKMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qpf-j2-5Iv">
+                                <rect key="frame" x="316" y="559" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="BIU-gS-C78"/>
+                                    <constraint firstAttribute="width" constant="44" id="VrA-uZ-1Mi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" image="location.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="userCurrentLocation:" destination="bhU-FT-wK9" eventType="touchUpInside" id="4Qo-7t-6QM"/>
+                                    <action selector="userCurrentLocation:" destination="98V-Oq-J7B" eventType="touchUpInside" id="MLS-HS-Xbp"/>
+                                    <action selector="userCurrentLocation:" destination="1AW-Kv-1AF" eventType="touchUpInside" id="V9f-ZI-GND"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="80p-mE-Bau"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0e6-qO-JcI" firstAttribute="top" secondItem="80p-mE-Bau" secondAttribute="top" id="CIT-pR-rkF"/>
+                            <constraint firstItem="80p-mE-Bau" firstAttribute="bottom" secondItem="0e6-qO-JcI" secondAttribute="bottom" id="Qvg-Ny-zAB"/>
+                            <constraint firstItem="0e6-qO-JcI" firstAttribute="leading" secondItem="80p-mE-Bau" secondAttribute="leading" id="pUO-CJ-qzi"/>
+                            <constraint firstItem="80p-mE-Bau" firstAttribute="bottom" secondItem="Qpf-j2-5Iv" secondAttribute="bottom" constant="15" id="u3m-9E-cb4"/>
+                            <constraint firstItem="80p-mE-Bau" firstAttribute="trailing" secondItem="Qpf-j2-5Iv" secondAttribute="trailing" constant="15" id="y9c-cj-byk"/>
+                            <constraint firstItem="80p-mE-Bau" firstAttribute="trailing" secondItem="0e6-qO-JcI" secondAttribute="trailing" id="ymL-dd-HOZ"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Task 2" id="f1u-8z-QlA"/>
+                    <connections>
+                        <outlet property="mapView" destination="0e6-qO-JcI" id="zK4-3M-Kny"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DWN-gt-IAo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -31,27 +66,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="h6W-eM-36X">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K8A-ba-bT0">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcn-ER-X41">
+                                <rect key="frame" x="316" y="559" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="FKA-Hd-MS0"/>
+                                    <constraint firstAttribute="width" constant="44" id="fhM-vs-FLi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" image="location.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="userCurrentLocation:" destination="1AW-Kv-1AF" eventType="touchUpInside" id="A20-YI-jvi"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="h6W-eM-36X" firstAttribute="leading" secondItem="mpf-uI-eGU" secondAttribute="leading" id="LCm-43-ANu"/>
-                            <constraint firstItem="h6W-eM-36X" firstAttribute="top" secondItem="U2l-8K-6ZK" secondAttribute="top" id="SWT-xC-8VX"/>
-                            <constraint firstItem="U2l-8K-6ZK" firstAttribute="trailing" secondItem="h6W-eM-36X" secondAttribute="trailing" id="owt-et-ygv"/>
-                            <constraint firstItem="U2l-8K-6ZK" firstAttribute="bottom" secondItem="h6W-eM-36X" secondAttribute="bottom" id="tzj-M6-DDW"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="U2l-8K-6ZK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="U2l-8K-6ZK" firstAttribute="trailing" secondItem="xcn-ER-X41" secondAttribute="trailing" constant="15" id="TjG-Yo-XGf"/>
+                            <constraint firstItem="K8A-ba-bT0" firstAttribute="top" secondItem="U2l-8K-6ZK" secondAttribute="top" id="a0c-pm-KIL"/>
+                            <constraint firstItem="U2l-8K-6ZK" firstAttribute="trailing" secondItem="K8A-ba-bT0" secondAttribute="trailing" id="hnK-iA-0db"/>
+                            <constraint firstItem="K8A-ba-bT0" firstAttribute="leading" secondItem="U2l-8K-6ZK" secondAttribute="leading" id="oTQ-WB-FFU"/>
+                            <constraint firstItem="U2l-8K-6ZK" firstAttribute="bottom" secondItem="xcn-ER-X41" secondAttribute="bottom" constant="15" id="rrb-cF-bbi"/>
+                            <constraint firstItem="U2l-8K-6ZK" firstAttribute="bottom" secondItem="K8A-ba-bT0" secondAttribute="bottom" id="xWy-Jx-zZn"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Task 3" id="eDf-kK-ouC"/>
                     <connections>
-                        <outlet property="mapView" destination="h6W-eM-36X" id="Mop-BL-jHh"/>
+                        <outlet property="mapView" destination="K8A-ba-bT0" id="cvF-Mb-rJd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o1K-M9-Ufw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1007" y="-197"/>
+            <point key="canvasLocation" x="1005.6" y="-197.45127436281859"/>
         </scene>
         <!--Task 1-->
         <scene sceneID="5fk-cn-lxv">
@@ -63,17 +114,34 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MY8-Tb-dkL" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auK-wv-RSB">
+                                <rect key="frame" x="316" y="559" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="346-ZX-myQ"/>
+                                    <constraint firstAttribute="height" constant="44" id="6GT-xP-Yho"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" image="location.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="userCurrentLocation:" destination="98V-Oq-J7B" eventType="touchUpInside" id="EUG-Va-1Ns"/>
+                                    <action selector="userCurrentLocation:" destination="1AW-Kv-1AF" eventType="touchUpInside" id="Hm8-Mh-d9P"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="rJl-4G-0q2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="rJl-4G-0q2" firstAttribute="trailing" secondItem="auK-wv-RSB" secondAttribute="trailing" constant="15" id="1Bb-wf-gaD"/>
                             <constraint firstItem="MY8-Tb-dkL" firstAttribute="leading" secondItem="rJl-4G-0q2" secondAttribute="leading" id="99g-c0-9Eu"/>
                             <constraint firstItem="rJl-4G-0q2" firstAttribute="bottom" secondItem="MY8-Tb-dkL" secondAttribute="bottom" id="EFi-XK-KxX"/>
                             <constraint firstItem="rJl-4G-0q2" firstAttribute="trailing" secondItem="MY8-Tb-dkL" secondAttribute="trailing" id="dDw-lW-l3R"/>
+                            <constraint firstItem="rJl-4G-0q2" firstAttribute="bottom" secondItem="auK-wv-RSB" secondAttribute="bottom" constant="15" id="t5b-XF-gfy"/>
                             <constraint firstItem="MY8-Tb-dkL" firstAttribute="top" secondItem="rJl-4G-0q2" secondAttribute="top" id="xsE-SU-Amd"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="rJl-4G-0q2"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Task 1" id="Kwg-Zb-BhN"/>
                     <connections>
@@ -104,4 +172,10 @@
             <point key="canvasLocation" x="-1468" y="-196"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="location.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

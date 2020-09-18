@@ -10,6 +10,7 @@
 		BC96AE4C5E3AB725168AFED4 /* Pods_lesson_10.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F6536C1D9EDC67A358180 /* Pods_lesson_10.framework */; };
 		FA7773EC2513AFC200F30F86 /* Task1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7773EB2513AFC200F30F86 /* Task1ViewController.swift */; };
 		FADD979225136F5B0031188F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADD979125136F5B0031188F /* LocationManager.swift */; };
+		FAF7C0952514A27200F38A36 /* Task2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7C0942514A27200F38A36 /* Task2ViewController.swift */; };
 		FAFCA9E425136CF20064DB3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCA9E325136CF20064DB3C /* AppDelegate.swift */; };
 		FAFCA9E625136CF20064DB3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCA9E525136CF20064DB3C /* SceneDelegate.swift */; };
 		FAFCA9E825136CF20064DB3C /* Task3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFCA9E725136CF20064DB3C /* Task3ViewController.swift */; };
@@ -24,6 +25,7 @@
 		A6895B99AF573D187BA26AB3 /* Pods-lesson_10.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lesson_10.release.xcconfig"; path = "Target Support Files/Pods-lesson_10/Pods-lesson_10.release.xcconfig"; sourceTree = "<group>"; };
 		FA7773EB2513AFC200F30F86 /* Task1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task1ViewController.swift; sourceTree = "<group>"; };
 		FADD979125136F5B0031188F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		FAF7C0942514A27200F38A36 /* Task2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task2ViewController.swift; sourceTree = "<group>"; };
 		FAFCA9E025136CF20064DB3C /* lesson_10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lesson_10.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAFCA9E325136CF20064DB3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAFCA9E525136CF20064DB3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				FA7773EB2513AFC200F30F86 /* Task1ViewController.swift */,
+				FAF7C0942514A27200F38A36 /* Task2ViewController.swift */,
 				FAFCA9E725136CF20064DB3C /* Task3ViewController.swift */,
 			);
 			path = Controllers;
@@ -244,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF7C0952514A27200F38A36 /* Task2ViewController.swift in Sources */,
 				FADD979225136F5B0031188F /* LocationManager.swift in Sources */,
 				FAFCA9E825136CF20064DB3C /* Task3ViewController.swift in Sources */,
 				FA7773EC2513AFC200F30F86 /* Task1ViewController.swift in Sources */,
