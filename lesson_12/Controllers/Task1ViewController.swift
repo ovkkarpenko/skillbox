@@ -8,10 +8,9 @@
 import UIKit
 import Vision
 
-class ViewController: UIViewController {
+class Task1ViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var classificationLabel: UILabel!
     
     lazy var classificationRequest: VNCoreMLRequest = {
@@ -102,7 +101,7 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension Task1ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)

@@ -7,21 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA8F431125188DDB00EE0353 /* Task22ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F431025188DDB00EE0353 /* Task22ViewController.swift */; };
+		FA8F43172518F3E000EE0353 /* Task2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8F43162518F3E000EE0353 /* Task2ViewController.swift */; };
 		FA9F16AE2516403100C4542E /* MyImageClassifier 1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FA9F16AD2516403100C4542E /* MyImageClassifier 1.mlmodel */; };
 		FAD703FB2516385A00A39EF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD703FA2516385A00A39EF4 /* AppDelegate.swift */; };
 		FAD703FD2516385A00A39EF4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD703FC2516385A00A39EF4 /* SceneDelegate.swift */; };
-		FAD703FF2516385A00A39EF4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD703FE2516385A00A39EF4 /* ViewController.swift */; };
+		FAD703FF2516385A00A39EF4 /* Task1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD703FE2516385A00A39EF4 /* Task1ViewController.swift */; };
 		FAD704022516385A00A39EF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD704002516385A00A39EF4 /* Main.storyboard */; };
 		FAD704042516385A00A39EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAD704032516385A00A39EF4 /* Assets.xcassets */; };
 		FAD704072516385A00A39EF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD704052516385A00A39EF4 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA8F431025188DDB00EE0353 /* Task22ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task22ViewController.swift; sourceTree = "<group>"; };
+		FA8F43162518F3E000EE0353 /* Task2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task2ViewController.swift; sourceTree = "<group>"; };
 		FA9F16AD2516403100C4542E /* MyImageClassifier 1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "MyImageClassifier 1.mlmodel"; sourceTree = SOURCE_ROOT; };
 		FAD703F72516385A00A39EF4 /* lesson_12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lesson_12.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD703FA2516385A00A39EF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAD703FC2516385A00A39EF4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FAD703FE2516385A00A39EF4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FAD703FE2516385A00A39EF4 /* Task1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task1ViewController.swift; sourceTree = "<group>"; };
 		FAD704012516385A00A39EF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAD704032516385A00A39EF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAD704062516385A00A39EF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,7 +92,9 @@
 		FAD704102516387200A39EF4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FAD703FE2516385A00A39EF4 /* ViewController.swift */,
+				FAD703FE2516385A00A39EF4 /* Task1ViewController.swift */,
+				FA8F431025188DDB00EE0353 /* Task22ViewController.swift */,
+				FA8F43162518F3E000EE0353 /* Task2ViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -172,7 +178,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAD703FF2516385A00A39EF4 /* ViewController.swift in Sources */,
+				FA8F43172518F3E000EE0353 /* Task2ViewController.swift in Sources */,
+				FA8F431125188DDB00EE0353 /* Task22ViewController.swift in Sources */,
+				FAD703FF2516385A00A39EF4 /* Task1ViewController.swift in Sources */,
 				FAD703FB2516385A00A39EF4 /* AppDelegate.swift in Sources */,
 				FA9F16AE2516403100C4542E /* MyImageClassifier 1.mlmodel in Sources */,
 				FAD703FD2516385A00A39EF4 /* SceneDelegate.swift in Sources */,
@@ -252,7 +260,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -307,7 +315,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
