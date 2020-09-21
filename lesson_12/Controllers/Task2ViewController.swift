@@ -15,6 +15,9 @@ class Task2ViewController: UIViewController {
     var faceLayer: CAShapeLayer!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
+    var rocket: UIImageView!
+    var endPoint: CGPoint!
+    
     lazy var faceDetectionRequest = VNDetectFaceRectanglesRequest(completionHandler: self.handleDetectedFaces)
     
     override func viewDidLoad() {
@@ -24,9 +27,9 @@ class Task2ViewController: UIViewController {
     }
     
     @IBAction func fire(_ sender: Any) {
-        //        for faceLayer in faceLayers {
+//                for faceLayer in faceLayers {
         animateRocketTo(frame: faceLayer.frame)
-        //        }
+//                }
     }
     
     func configCamera() {
@@ -62,7 +65,7 @@ class Task2ViewController: UIViewController {
     }
     
     fileprivate func animateRocketTo(frame: CGRect) {
-        let rocket = UIImageView(image: UIImage(named: "1"))
+        rocket = UIImageView(image: UIImage(named: "1"))
         rocket.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: rocket.image!.size.width/5, height: rocket.image!.size.height/5))
         rocket.center = CGPoint(x: view.frame.size.width/2, y: view.frame.size.height - rocket.image!.size.height/8)
         
@@ -76,12 +79,12 @@ class Task2ViewController: UIViewController {
         view.addSubview(boom)
         
         let distance = view.frame.size.width / min(frame.size.width, frame.size.height)
-        let duration = Double(distance) * 0.45
+        let duration = Double(distance) * 0.2
         
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseIn, animations: {
-            rocket.center = boom.center
+            self.rocket.center = self.endPoint
         }) { (_) in
-            rocket.alpha = 0
+            self.rocket.alpha = 0
             UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseOut, animations: {
                 boom.alpha = 1
                 boom.transform = CGAffineTransform(scaleX: 1, y: 1)
@@ -173,6 +176,7 @@ class Task2ViewController: UIViewController {
         for observation in faces {
             let faceBox = boundingBox(forRegionOfInterest: observation.boundingBox, withinImageBounds: bounds)
             faceLayer = shapeLayer(color: .yellow, frame: faceBox)
+            endPoint = CGPoint(x: faceLayer.frame.origin.x + faceLayer.frame.size.width/2, y: faceLayer.frame.origin.y + faceLayer.frame.size.height/2-50)
             
             pathLayer?.addSublayer(faceLayer)
         }
