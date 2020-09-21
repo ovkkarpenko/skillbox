@@ -25,7 +25,7 @@ class Task2ViewController: UIViewController {
     
     @IBAction func fire(_ sender: Any) {
         //        for faceLayer in faceLayers {
-        animateRocketTo()
+        animateRocketTo(frame: faceLayer.frame)
         //        }
     }
     
@@ -61,21 +61,21 @@ class Task2ViewController: UIViewController {
         self.view.layer.addSublayer(pathLayer)
     }
     
-    fileprivate func animateRocketTo() {
+    fileprivate func animateRocketTo(frame: CGRect) {
         let rocket = UIImageView(image: UIImage(named: "1"))
         rocket.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: rocket.image!.size.width/5, height: rocket.image!.size.height/5))
         rocket.center = CGPoint(x: view.frame.size.width/2, y: view.frame.size.height - rocket.image!.size.height/8)
         
         let boom = UIImageView(image: UIImage(named: "2"))
         boom.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: boom.image!.size.width/4, height: boom.image!.size.height/4))
-        boom.center = CGPoint(x: view.frame.origin.x + view.frame.size.width/2, y: view.frame.origin.y + view.frame.size.height/2-50)
+        boom.center = CGPoint(x: frame.origin.x + frame.size.width/2, y: frame.origin.y + frame.size.height/2-50)
         boom.alpha = 0
         boom.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         
         view.addSubview(rocket)
         view.addSubview(boom)
         
-        let distance = view.frame.size.width / min(faceLayer.frame.size.width, faceLayer.frame.size.height)
+        let distance = view.frame.size.width / min(frame.size.width, frame.size.height)
         let duration = Double(distance) * 0.45
         
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseIn, animations: {
@@ -173,9 +173,6 @@ class Task2ViewController: UIViewController {
         for observation in faces {
             let faceBox = boundingBox(forRegionOfInterest: observation.boundingBox, withinImageBounds: bounds)
             faceLayer = shapeLayer(color: .yellow, frame: faceBox)
-            
-            let distance = view.frame.size.width / min(faceLayer.frame.size.width, faceLayer.frame.size.height)
-            let duration = Double(distance) * 0.45
             
             pathLayer?.addSublayer(faceLayer)
         }
