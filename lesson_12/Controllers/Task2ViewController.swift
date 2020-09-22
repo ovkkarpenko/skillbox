@@ -9,14 +9,18 @@ import UIKit
 import AVFoundation
 import Vision
 
+struct Rocket {
+    var faceLayer: CAShapeLayer
+    var rocket: UIImageView?
+    var boom: UIImageView?
+}
+
 class Task2ViewController: UIViewController {
     
     var pathLayer: CALayer!
-    var faceLayer: CAShapeLayer!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
-    var rocket: UIImageView!
-    var endPoint: CGPoint!
+    var rockets: [Rocket] = []
     
     lazy var faceDetectionRequest = VNDetectFaceRectanglesRequest(completionHandler: self.handleDetectedFaces)
     
@@ -27,16 +31,16 @@ class Task2ViewController: UIViewController {
     }
     
     @IBAction func fire(_ sender: Any) {
-//                for faceLayer in faceLayers {
-        animateRocketTo(frame: faceLayer.frame)
-//                }
+        for i in 0..<rockets.count {
+            animateRocket(&rockets[i])
+        }
     }
     
     func configCamera() {
         let captureSession = AVCaptureSession()
         captureSession.sessionPreset = .photo
         
-        guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front),
+        guard let captureDevice = AVCaptureDevice.default(for: .video),
               let input = try? AVCaptureDeviceInput(device: captureDevice) else { return}
         
         captureSession.addInput(input)
@@ -64,38 +68,56 @@ class Task2ViewController: UIViewController {
         self.view.layer.addSublayer(pathLayer)
     }
     
-    fileprivate func animateRocketTo(frame: CGRect) {
-        rocket = UIImageView(image: UIImage(named: "1"))
-        rocket.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: rocket.image!.size.width/5, height: rocket.image!.size.height/5))
-        rocket.center = CGPoint(x: view.frame.size.width/2, y: view.frame.size.height - rocket.image!.size.height/8)
+    fileprivate func animateRocket(_ rocket: inout Rocket) {
+        let rocketView = UIImageView(image: UIImage(named: "1"))
+        rocketView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: rocketView.image!.size.width/5, height: rocketView.image!.size.height/5))
+        rocketView.center = CGPoint(x: view.frame.size.width/2, y: view.frame.size.height - rocketView.image!.size.height/8)
         
-        let boom = UIImageView(image: UIImage(named: "2"))
-        boom.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: boom.image!.size.width/4, height: boom.image!.size.height/4))
-        boom.center = CGPoint(x: frame.origin.x + frame.size.width/2, y: frame.origin.y + frame.size.height/2-50)
-        boom.alpha = 0
-        boom.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        let boomView = UIImageView(image: UIImage(named: "2"))
+        boomView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: boomView.image!.size.width/4, height: boomView.image!.size.height/4))
+        boomView.center = CGPoint(x: rocket.faceLayer.frame.origin.x + rocket.faceLayer.frame.size.width/2, y: rocket.faceLayer.frame.origin.y + rocket.faceLayer.frame.size.height/2-50)
+        boomView.alpha = 0
+        boomView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         
-        view.addSubview(rocket)
-        view.addSubview(boom)
+        view.addSubview(rocketView)
+        view.addSubview(boomView)
         
-        let distance = view.frame.size.width / min(frame.size.width, frame.size.height)
-        let duration = Double(distance) * 0.2
+        rocket.rocket = rocketView
+        rocket.boom = boomView
         
-        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseIn, animations: {
-            self.rocket.center = self.endPoint
+        let distance = view.frame.size.width / min(rocket.faceLayer.frame.size.width, rocket.faceLayer.frame.size.height)
+        let duration = Double(distance) * 0.45
+        
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
+            rocketView.center = boomView.center
         }) { (_) in
-            self.rocket.alpha = 0
-            UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseOut, animations: {
-                boom.alpha = 1
-                boom.transform = CGAffineTransform(scaleX: 1, y: 1)
+            rocketView.alpha = 0
+            UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+                boomView.alpha = 1
+                boomView.transform = CGAffineTransform(scaleX: 1, y: 1)
             }, completion: { (_) in
-                UIView.animate(withDuration: 0.7, delay: 0, options: .curveEaseIn, animations: {
-                    boom.alpha = 0
-                    boom.transform = CGAffineTransform(scaleX: 2, y: 2)
+                UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseIn, animations: {
+                    boomView.alpha = 0
+                    boomView.transform = CGAffineTransform(scaleX: 2, y: 2)
                 }, completion: { (_) in
                     
                 })
             })
+        }
+    }
+    
+    fileprivate func reloadRocketAnimate() {
+        for rocket in rockets {
+            let distance = view.frame.size.width / min(rocket.faceLayer.frame.size.width, rocket.faceLayer.frame.size.height)
+            let duration = Double(distance) * 0.45
+            
+            if let rocketView = rocket.rocket,
+               let boomView = rocket.boom {
+                UIView.animate(withDuration: duration, delay: 0, options: .beginFromCurrentState, animations: {
+                    rocketView.center = rocket.faceLayer.frame.origin
+                    boomView.center = rocket.faceLayer.frame.origin
+                })
+            }
         }
     }
     
@@ -173,14 +195,20 @@ class Task2ViewController: UIViewController {
     
     fileprivate func draw(faces: [VNFaceObservation], onImageWithBounds bounds: CGRect) {
         CATransaction.begin()
-        for observation in faces {
-            let faceBox = boundingBox(forRegionOfInterest: observation.boundingBox, withinImageBounds: bounds)
-            faceLayer = shapeLayer(color: .yellow, frame: faceBox)
-            endPoint = CGPoint(x: faceLayer.frame.origin.x + faceLayer.frame.size.width/2, y: faceLayer.frame.origin.y + faceLayer.frame.size.height/2-50)
+        for i in 0..<faces.count {
+            let faceBox = boundingBox(forRegionOfInterest: faces[i].boundingBox, withinImageBounds: bounds)
+            let faceLayer = shapeLayer(color: .yellow, frame: faceBox)
             
-            pathLayer?.addSublayer(faceLayer)
+            if rockets.count != faces.count {
+                rockets.append(Rocket(faceLayer: faceLayer))
+            } else {
+                rockets[i].faceLayer = faceLayer
+            }
+            
+            //pathLayer?.addSublayer(faceLayer)
         }
         CATransaction.commit()
+        reloadRocketAnimate()
     }
     
 }
@@ -189,7 +217,7 @@ extension Task2ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-        performVisionRequest(pixelBuffer: pixelBuffer, orientation: .leftMirrored)
+        performVisionRequest(pixelBuffer: pixelBuffer, orientation: .right)
     }
     
 }
