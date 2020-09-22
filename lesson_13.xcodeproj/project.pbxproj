@@ -7,15 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA601F8D251A2B95007DFD36 /* 3.mov in Resources */ = {isa = PBXBuildFile; fileRef = FA601F88251A2B94007DFD36 /* 3.mov */; };
+		FA601F8E251A2B95007DFD36 /* 4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA601F89251A2B94007DFD36 /* 4.mp3 */; };
+		FA601F8F251A2B95007DFD36 /* 5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA601F8A251A2B94007DFD36 /* 5.mp3 */; };
+		FA601F90251A2B95007DFD36 /* 2.mov in Resources */ = {isa = PBXBuildFile; fileRef = FA601F8B251A2B94007DFD36 /* 2.mov */; };
+		FA601F91251A2B95007DFD36 /* 1.mov in Resources */ = {isa = PBXBuildFile; fileRef = FA601F8C251A2B95007DFD36 /* 1.mov */; };
 		FABB01772519F87C009E45CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB01762519F87C009E45CC /* AppDelegate.swift */; };
 		FABB01792519F87C009E45CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB01782519F87C009E45CC /* SceneDelegate.swift */; };
 		FABB017B2519F87C009E45CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB017A2519F87C009E45CC /* ViewController.swift */; };
 		FABB017E2519F87C009E45CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABB017C2519F87C009E45CC /* Main.storyboard */; };
 		FABB01802519F87C009E45CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FABB017F2519F87C009E45CC /* Assets.xcassets */; };
 		FABB01832519F87C009E45CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABB01812519F87C009E45CC /* LaunchScreen.storyboard */; };
+		FABB01922519FB95009E45CC /* AssetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB01912519FB95009E45CC /* AssetStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA601F88251A2B94007DFD36 /* 3.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = 3.mov; sourceTree = "<group>"; };
+		FA601F89251A2B94007DFD36 /* 4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 4.mp3; sourceTree = "<group>"; };
+		FA601F8A251A2B94007DFD36 /* 5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 5.mp3; sourceTree = "<group>"; };
+		FA601F8B251A2B94007DFD36 /* 2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = 2.mov; sourceTree = "<group>"; };
+		FA601F8C251A2B95007DFD36 /* 1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = 1.mov; sourceTree = "<group>"; };
 		FABB01732519F87C009E45CC /* lesson_13.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lesson_13.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABB01762519F87C009E45CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FABB01782519F87C009E45CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +35,7 @@
 		FABB017F2519F87C009E45CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FABB01822519F87C009E45CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FABB01842519F87C009E45CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FABB01912519FB95009E45CC /* AssetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +68,53 @@
 		FABB01752519F87C009E45CC /* lesson_13 */ = {
 			isa = PBXGroup;
 			children = (
-				FABB01762519F87C009E45CC /* AppDelegate.swift */,
-				FABB01782519F87C009E45CC /* SceneDelegate.swift */,
-				FABB017A2519F87C009E45CC /* ViewController.swift */,
-				FABB017C2519F87C009E45CC /* Main.storyboard */,
+				FABB01902519FB89009E45CC /* Utils */,
+				FABB018E2519F886009E45CC /* Views */,
+				FABB018C2519F882009E45CC /* Controllers */,
+				FABB018B2519F880009E45CC /* Delegates */,
 				FABB017F2519F87C009E45CC /* Assets.xcassets */,
-				FABB01812519F87C009E45CC /* LaunchScreen.storyboard */,
 				FABB01842519F87C009E45CC /* Info.plist */,
+				FA601F8C251A2B95007DFD36 /* 1.mov */,
+				FA601F8B251A2B94007DFD36 /* 2.mov */,
+				FA601F88251A2B94007DFD36 /* 3.mov */,
+				FA601F89251A2B94007DFD36 /* 4.mp3 */,
+				FA601F8A251A2B94007DFD36 /* 5.mp3 */,
 			);
 			path = lesson_13;
+			sourceTree = "<group>";
+		};
+		FABB018B2519F880009E45CC /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				FABB01762519F87C009E45CC /* AppDelegate.swift */,
+				FABB01782519F87C009E45CC /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		FABB018C2519F882009E45CC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FABB017A2519F87C009E45CC /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FABB018E2519F886009E45CC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FABB017C2519F87C009E45CC /* Main.storyboard */,
+				FABB01812519F87C009E45CC /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FABB01902519FB89009E45CC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FABB01912519FB95009E45CC /* AssetStore.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,8 +174,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA601F90251A2B95007DFD36 /* 2.mov in Resources */,
+				FA601F8F251A2B95007DFD36 /* 5.mp3 in Resources */,
+				FA601F8D251A2B95007DFD36 /* 3.mov in Resources */,
 				FABB01832519F87C009E45CC /* LaunchScreen.storyboard in Resources */,
 				FABB01802519F87C009E45CC /* Assets.xcassets in Resources */,
+				FA601F8E251A2B95007DFD36 /* 4.mp3 in Resources */,
+				FA601F91251A2B95007DFD36 /* 1.mov in Resources */,
 				FABB017E2519F87C009E45CC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABB01922519FB95009E45CC /* AssetStore.swift in Sources */,
 				FABB017B2519F87C009E45CC /* ViewController.swift in Sources */,
 				FABB01772519F87C009E45CC /* AppDelegate.swift in Sources */,
 				FABB01792519F87C009E45CC /* SceneDelegate.swift in Sources */,
@@ -216,7 +272,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -271,7 +327,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
