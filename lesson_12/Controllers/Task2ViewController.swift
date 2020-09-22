@@ -40,7 +40,7 @@ class Task2ViewController: UIViewController {
         let captureSession = AVCaptureSession()
         captureSession.sessionPreset = .photo
         
-        guard let captureDevice = AVCaptureDevice.default(for: .video),
+        guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front),
               let input = try? AVCaptureDeviceInput(device: captureDevice) else { return}
         
         captureSession.addInput(input)
@@ -217,7 +217,7 @@ extension Task2ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-        performVisionRequest(pixelBuffer: pixelBuffer, orientation: .right)
+        performVisionRequest(pixelBuffer: pixelBuffer, orientation: .leftMirrored)
     }
     
 }
