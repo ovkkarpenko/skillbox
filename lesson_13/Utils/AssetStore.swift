@@ -42,7 +42,8 @@ class AssetStore {
         let composition = AVMutableComposition()
         
         guard let videoTrack1 = composition.addMutableTrack(withMediaType: .video, preferredTrackID: Int32(kCMPersistentTrackID_Invalid)),
-              let videoTrack2 = composition.addMutableTrack(withMediaType: .video, preferredTrackID: Int32(kCMPersistentTrackID_Invalid))
+              let videoTrack2 = composition.addMutableTrack(withMediaType: .video, preferredTrackID: Int32(kCMPersistentTrackID_Invalid)),
+              let videoTrack3 = composition.addMutableTrack(withMediaType: .video, preferredTrackID: Int32(kCMPersistentTrackID_Invalid))
               //let audioTrack = composition.addMutableTrack(withMediaType: .audio, preferredTrackID: Int32(kCMPersistentTrackID_Invalid))
         else {
             fatalError()
@@ -64,64 +65,67 @@ class AssetStore {
         
         let transitionDuration = CMTime(seconds: 1.0, preferredTimescale: 600)
         
-        let video1 = videos[0]
-        let video2 = videos[1]
-        let video3 = videos[2]
-        let audio1 = audio[0]
-        let audio2 = audio[1]
-        
-        insertVideo(track: videoTrack1, asset: video1, at: CMTime.zero)
-        insertVideo(track: videoTrack2, asset: video2, at: video1.duration - transitionDuration)
+        insertVideo(track: videoTrack1, asset: videos[0], at: CMTime.zero)
+        insertVideo(track: videoTrack2, asset: videos[1], at: videos[0].duration - transitionDuration)
+        insertVideo(track: videoTrack3, asset: videos[2], at: (videos[0].duration - transitionDuration) + (videos[1].duration - transitionDuration))
         
 //        insertAudio(track: audioTrack, asset: audio1, at: CMTime.zero)
         
-//        try? videoTrack1.insertTimeRange(
-//            CMTimeRange(start: CMTime.zero, duration: video1.duration),
-//            of: video1.tracks(withMediaType: .video)[0],
-//            at: CMTime.zero)
-//
-//        try? videoTrack2.insertTimeRange(
-//            CMTimeRange(start: CMTime.zero, duration: video2.duration),
-//            of: video2.tracks(withMediaType: .video)[0],
-//            at: video1.duration - transitionDuration)
+        let instruction1 = createFadeTransition(videoTrack1: videoTrack1, videoTrack2: videoTrack2, video: videos[0], start: videos[0].duration - transitionDuration, transitionDuration: transitionDuration)
+        let instruction2 = createFadeTransition(videoTrack1: videoTrack2, videoTrack2: videoTrack3, video: videos[1], start: (videos[0].duration - transitionDuration) + (videos[1].duration - transitionDuration), transitionDuration: transitionDuration)
         
-//        try? audioTrack.insertTimeRange(
-//            CMTimeRange(start: CMTime.zero, duration: video1.duration + video2.duration),
-//            of: audio1.tracks(withMediaType: .audio)[0],
-//            at: CMTime.zero)
+        let passThroughInstruction1 = createVideoInstruction(
+            videoTrack: videoTrack1,
+            video: videos[0],
+            start: CMTime.zero,
+            duration: videos[0].duration - transitionDuration)
         
-        let passThroughInstruction1 = AVMutableVideoCompositionInstruction()
-        passThroughInstruction1.timeRange = CMTimeRange(start: CMTime.zero, duration: video1.duration - transitionDuration)
+        let passThroughInstruction2 = createVideoInstruction(
+            videoTrack: videoTrack2,
+            video: videos[1],
+            start: videos[0].duration,
+            duration: videos[1].duration - transitionDuration)
         
-        let passThroughLayerInstruction1 = AVMutableVideoCompositionLayerInstruction(assetTrack: videoTrack1)
-        passThroughLayerInstruction1.setTransform(videoTrack1.preferredTransform, at: CMTime.zero)
-        passThroughInstruction1.layerInstructions = [passThroughLayerInstruction1]
-        
-        let passThroughInstruction2 = AVMutableVideoCompositionInstruction()
-        passThroughInstruction2.timeRange = CMTimeRange(start: video1.duration, duration: video2.duration - transitionDuration)
-        
-        let passThroughLayerInstruction2 = AVMutableVideoCompositionLayerInstruction(assetTrack: videoTrack2)
-        passThroughLayerInstruction2.setTransform(videoTrack2.preferredTransform, at: CMTime.zero)
-        passThroughInstruction2.layerInstructions = [passThroughLayerInstruction2]
-        
-        let transitionTimeRange = CMTimeRange(start: video1.duration - transitionDuration, duration: transitionDuration)
+        let passThroughInstruction3 = createVideoInstruction(
+            videoTrack: videoTrack3,
+            video: videos[2],
+            start: videos[0].duration + videos[1].duration,
+            duration: videos[2].duration)
         
         let videoComposition = AVMutableVideoComposition(propertiesOf: composition)
+        videoComposition.renderSize = CGSize(width: videoTrack1.naturalSize.width+1, height: videoTrack1.naturalSize.height+1)
+        videoComposition.instructions = [passThroughInstruction1, instruction1, passThroughInstruction2, instruction2, passThroughInstruction3]
+        
+        return (composition, videoComposition)
+    }
+    
+    func createFadeTransition(videoTrack1: AVMutableCompositionTrack, videoTrack2: AVMutableCompositionTrack, video: AVAsset, start: CMTime, transitionDuration: CMTime) -> AVMutableVideoCompositionInstruction {
         let instruction = AVMutableVideoCompositionInstruction()
+        
+        let transitionTimeRange = CMTimeRange(start: start, duration: transitionDuration)
         instruction.timeRange = transitionTimeRange
         
         let fadeOutInstruction = AVMutableVideoCompositionLayerInstruction(assetTrack: videoTrack1)
         let fadeInInstruction = AVMutableVideoCompositionLayerInstruction(assetTrack: videoTrack2)
         
-        fadeOutInstruction.setTransform(video1.preferredTransform, at: CMTime.zero)
+        fadeOutInstruction.setTransform(video.preferredTransform, at: CMTime.zero)
         fadeOutInstruction.setOpacityRamp(fromStartOpacity: 1, toEndOpacity: 0, timeRange: transitionTimeRange)
         
         fadeInInstruction.setOpacityRamp(fromStartOpacity: 0, toEndOpacity: 1, timeRange: transitionTimeRange)
         
         instruction.layerInstructions = [fadeOutInstruction, fadeInInstruction]
-        videoComposition.instructions = [passThroughInstruction1, instruction, passThroughInstruction2]
+        return instruction
+    }
+    
+    func createVideoInstruction(videoTrack: AVMutableCompositionTrack, video: AVAsset, start: CMTime, duration: CMTime) -> AVMutableVideoCompositionInstruction {
+        let passThroughInstruction = AVMutableVideoCompositionInstruction()
+        passThroughInstruction.timeRange = CMTimeRange(start: start, duration: duration)
         
-        return (composition, videoComposition)
+        let passThroughLayerInstruction = AVMutableVideoCompositionLayerInstruction(assetTrack: videoTrack)
+        passThroughLayerInstruction.setTransform(videoTrack.preferredTransform, at: CMTime.zero)
+        passThroughInstruction.layerInstructions = [passThroughLayerInstruction]
+        
+        return passThroughInstruction
     }
     
     func export(asset: AVAsset, completion: @escaping (Bool) -> Void) {
