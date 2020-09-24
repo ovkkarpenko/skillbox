@@ -56,15 +56,39 @@
 		FA4078ED251B3314002FC8FE /* lesson_14 */ = {
 			isa = PBXGroup;
 			children = (
-				FA4078EE251B3314002FC8FE /* AppDelegate.swift */,
-				FA4078F0251B3314002FC8FE /* SceneDelegate.swift */,
-				FA4078F2251B3314002FC8FE /* ViewController.swift */,
-				FA4078F4251B3314002FC8FE /* Main.storyboard */,
+				FA407906251B3325002FC8FE /* Views */,
+				FA407905251B3322002FC8FE /* Controllers */,
+				FA407903251B331D002FC8FE /* Delegates */,
 				FA4078F7251B3314002FC8FE /* Assets.xcassets */,
-				FA4078F9251B3314002FC8FE /* LaunchScreen.storyboard */,
 				FA4078FC251B3314002FC8FE /* Info.plist */,
 			);
 			path = lesson_14;
+			sourceTree = "<group>";
+		};
+		FA407903251B331D002FC8FE /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				FA4078EE251B3314002FC8FE /* AppDelegate.swift */,
+				FA4078F0251B3314002FC8FE /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		FA407905251B3322002FC8FE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA4078F2251B3314002FC8FE /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FA407906251B3325002FC8FE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA4078F4251B3314002FC8FE /* Main.storyboard */,
+				FA4078F9251B3314002FC8FE /* LaunchScreen.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,7 +240,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -271,7 +295,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
