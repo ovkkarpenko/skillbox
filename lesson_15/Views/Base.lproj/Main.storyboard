@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="lesson_15" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cwX-6q-Ylq">
+                                <rect key="frame" x="16" y="465" width="343" height="182"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9iQ-yJ-b3p">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                        <state key="normal" title="Filter 1"/>
+                                        <connections>
+                                            <action selector="filter1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LSF-iG-1hh"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POR-uL-nBV">
+                                        <rect key="frame" x="0.0" y="38" width="343" height="30"/>
+                                        <state key="normal" title="Filter 2"/>
+                                        <connections>
+                                            <action selector="filter2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fdl-8v-mcr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mxj-LM-ZGK">
+                                        <rect key="frame" x="0.0" y="76" width="343" height="30"/>
+                                        <state key="normal" title="Filter 3"/>
+                                        <connections>
+                                            <action selector="filter3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="caY-cA-U9Q"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OdO-NS-RTA">
+                                        <rect key="frame" x="0.0" y="114" width="343" height="30"/>
+                                        <state key="normal" title="Filter 4"/>
+                                        <connections>
+                                            <action selector="filter4:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gWG-00-exx"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orN-vo-1xf">
+                                        <rect key="frame" x="0.0" y="152" width="343" height="30"/>
+                                        <state key="normal" title="Filter 5"/>
+                                        <connections>
+                                            <action selector="filter5:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wL8-dZ-1Cm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2bi-RM-hQF">
+                                <rect key="frame" x="16" y="59" width="343" height="398"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="398" id="kZa-IP-fMI"/>
+                                </constraints>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fno-rB-8Pm">
+                                <rect key="frame" x="16" y="20" width="343" height="32"/>
+                                <segments>
+                                    <segment title="Photo"/>
+                                    <segment title="Video"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changeSourceType:" destination="BYZ-38-t0r" eventType="valueChanged" id="vJK-rq-EdC"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ac3-d6-8sK">
+                                <rect key="frame" x="16" y="59" width="343" height="398"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="398" id="w0R-mh-uUv"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cwX-6q-Ylq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="31s-4H-HIG"/>
+                            <constraint firstItem="ac3-d6-8sK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="4zH-yL-tIa"/>
+                            <constraint firstItem="fno-rB-8Pm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="AGc-rc-LnS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2bi-RM-hQF" secondAttribute="trailing" constant="16" id="Evi-dH-A5f"/>
+                            <constraint firstItem="ac3-d6-8sK" firstAttribute="top" secondItem="fno-rB-8Pm" secondAttribute="bottom" constant="8" symbolic="YES" id="UR6-Qt-JVR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fno-rB-8Pm" secondAttribute="trailing" constant="16" id="bSD-Ao-0GN"/>
+                            <constraint firstItem="cwX-6q-Ylq" firstAttribute="top" secondItem="ac3-d6-8sK" secondAttribute="bottom" constant="8" symbolic="YES" id="d7f-mQ-yIT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cwX-6q-Ylq" secondAttribute="trailing" constant="16" id="ktu-Cg-r7V"/>
+                            <constraint firstItem="2bi-RM-hQF" firstAttribute="top" secondItem="fno-rB-8Pm" secondAttribute="bottom" constant="8" id="lQP-sn-MZf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cwX-6q-Ylq" secondAttribute="bottom" constant="20" id="mzj-ZX-Mmg"/>
+                            <constraint firstItem="2bi-RM-hQF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="pDD-j0-e3t"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ac3-d6-8sK" secondAttribute="trailing" constant="16" id="qA0-A2-Lje"/>
+                            <constraint firstItem="fno-rB-8Pm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="yvc-WP-ZM4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="photoView" destination="ac3-d6-8sK" id="2oH-HX-08w"/>
+                        <outlet property="videoView" destination="2bi-RM-hQF" id="BHd-Fm-ewa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-154.40000000000001" y="112.89355322338831"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
