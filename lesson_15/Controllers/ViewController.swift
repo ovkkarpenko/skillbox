@@ -62,7 +62,6 @@ class ViewController: UIViewController {
         } else {
             gpuMovie.removeAllTargets()
             gpuMovie.addTarget(f)
-            gpuMovie.playAtActualSpeed = true
             f.addTarget(filteredView)
             
             gpuMovie.startProcessing()
@@ -98,7 +97,6 @@ class ViewController: UIViewController {
             gpuMovie.addTarget(f1)
             f1.addTarget(f2)
             f2.addTarget(f3)
-            gpuMovie.playAtActualSpeed = true
             f3.addTarget(filteredView)
             
             gpuMovie.startProcessing()
@@ -120,7 +118,6 @@ class ViewController: UIViewController {
         } else {
             gpuMovie.removeAllTargets()
             gpuMovie.addTarget(f)
-            gpuMovie.playAtActualSpeed = true
             f.addTarget(filteredView)
             
             gpuMovie.startProcessing()
@@ -151,7 +148,6 @@ class ViewController: UIViewController {
             gpuMovie.removeAllTargets()
             gpuMovie.addTarget(f1)
             f1.addTarget(f2)
-            gpuMovie.playAtActualSpeed = true
             f2.addTarget(filteredView)
             
             gpuMovie.startProcessing()
@@ -161,10 +157,10 @@ class ViewController: UIViewController {
     
     @IBAction func filter5(_ sender: Any) {
         let f = GPUImageLookupFilter()
-        let lut = GPUImagePicture(image: UIImage(named: "2"))!
         
         if videoView.isHidden {
             applyFilter { [unowned self] in
+                let lut = GPUImagePicture(image: UIImage(named: "2"))!
                 let picture = GPUImagePicture(image: image)!
                 
                 picture.addTarget(f, atTextureLocation: 0)
@@ -181,7 +177,16 @@ class ViewController: UIViewController {
                 }
             }
         } else {
+            let imagePicture = GPUImagePicture(image: UIImage(named: "2"))!
+            gpuMovie.addTarget(f)
+            imagePicture.addTarget(f)
             
+            gpuMovie.startProcessing()
+            imagePicture.processImage()
+            
+            f.addTarget(filteredView)
+            
+            player.play()
         }
     }
     
