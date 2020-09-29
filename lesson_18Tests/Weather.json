@@ -1,0 +1,45 @@
+{
+    "cod": "200",
+    "eightDays": [
+        {
+            "temperature": "20",
+            "wind": "10",
+            "rain": "2"
+        },
+        {
+            "temperature": "22",
+            "wind": "10",
+            "rain": "2"
+        },
+        {
+            "temperature": "23",
+            "wind": "10",
+            "rain": "2"
+        },
+        {
+            "temperature": "25",
+            "wind": "10",
+            "rain": "2"
+        },
+        {
+            "temperature": "18",
+            "wind": "10",
+            "rain": "4"
+        },
+        {
+            "temperature": "17",
+            "wind": "10",
+            "rain": "3"
+        },
+        {
+            "temperature": "16",
+            "wind": "40",
+            "rain": "20"
+        },
+        {
+            "temperature": "10",
+            "wind": "12",
+            "rain": "8"
+        }
+    ]
+}
