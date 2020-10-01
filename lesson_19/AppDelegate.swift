@@ -19,16 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupFirebase() {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
-        registerForPushNotifications()
         
-        let alert = UIAlertController(title: "Alert", message: "1", preferredStyle: .alert)
+        registerForPushNotifications { granted in
+            if granted {
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        }
         
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        var date = Date()
+        date = date.adding(seconds: 5)
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-        vc.present(alert, animated: true)
+        scheduleNotification(identifier: "group.lesson_19", title: "title", subtitle: "subtitle", body: "body", timeInterval: date.timeIntervalSince1970)
     }
     
     func registerForPushNotifications(completion: ((Bool) -> Void)? = nil) {
@@ -36,8 +39,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { granted, _ in
             completion?(granted)
         })
+    }
+    
+    func scheduleNotification(identifier: String, title: String, subtitle: String, body: String, timeInterval: TimeInterval, repeats: Bool = false) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.subtitle = subtitle
+        content.body = body
         
-        UIApplication.shared.registerForRemoteNotifications()
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: repeats)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
     // MARK: UISceneSession Lifecycle
@@ -57,6 +69,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
+extension Date {
+    func adding(seconds: Int) -> Date {
+        return Calendar.current.date(byAdding: .second, value: seconds, to: self)!
+    }
+}
+
 extension AppDelegate: MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
@@ -64,6 +82,8 @@ extension AppDelegate: MessagingDelegate {
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        
+        print("test")
         
         if let popupText = remoteMessage.appData["popupText"] as? String,
            let popupButton = remoteMessage.appData["popupButton"] as? String{
