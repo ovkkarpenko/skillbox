@@ -27,29 +27,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        
-        var date = Date()
-        date = date.adding(seconds: 5)
-        
-        scheduleNotification(identifier: "group.lesson_19", title: "title", subtitle: "subtitle", body: "body", timeInterval: date.timeIntervalSince1970)
     }
     
     func registerForPushNotifications(completion: ((Bool) -> Void)? = nil) {
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-        UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { granted, _ in
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        
+        center.requestAuthorization(options: authOptions, completionHandler: { granted, _ in
             completion?(granted)
         })
-    }
-    
-    func scheduleNotification(identifier: String, title: String, subtitle: String, body: String, timeInterval: TimeInterval, repeats: Bool = false) {
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.subtitle = subtitle
-        content.body = body
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: repeats)
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
     // MARK: UISceneSession Lifecycle
@@ -66,25 +53,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
+}
+
+extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate {
     
-}
-
-extension Date {
-    func adding(seconds: Int) -> Date {
-        return Calendar.current.date(byAdding: .second, value: seconds, to: self)!
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        if notification.request.identifier == "group.lesson_19" {
+            let alert = UIAlertController(title: "Alert", message: notification.request.content.title, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: notification.request.content.body, style: .default, handler: nil))
+            
+            if let vc = UIApplication.shared.keyWindow?.rootViewController as? ViewController {
+                vc.present(alert, animated: true)
+            }
+        }
     }
-}
-
-extension AppDelegate: MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        
-        print("test")
-        
         if let popupText = remoteMessage.appData["popupText"] as? String,
            let popupButton = remoteMessage.appData["popupButton"] as? String{
             let alert = UIAlertController(title: "Alert", message: popupText, preferredStyle: .alert)
